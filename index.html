@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="eng-us">
+
+<head>
+    <meta charset = "UTF-8">
+    <title>Random Passwords</title>
+      <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <meta name="viewport" content="width-device-width, initial scale=1">
+</head>
+
+<body style="max-width: 960px">
+  <script type="text/javascript">
+
+    var lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    var uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    var specChar = ["!", "#", "$", "%", "&", "*", "+", "-", "/", ":", ";", "<", "=", ">", "?", "@", "^", "_", "~"];
+    var nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    var incType = ["l","u", "n"];
+    var pwSize = parseInt(prompt("Enter PW Size"));
+    var pw = "";
+    
+    // include at least one element
+    
+    if(incType.includes("l")){
+      pw = pw + lowercase[Math.floor(Math.random()*lowercase.length)];
+    }
+    if(incType.includes("u")){
+      pw = pw + uppercase[Math.floor(Math.random()*uppercase.length)];
+    }
+    if(incType.includes("s")){
+      pw = pw + specChar[Math.floor(Math.random()*specChar.length)];
+    }
+    if(incType.includes("n")){
+      pw = pw + nums[Math.floor(Math.random()*nums.length)];  
+    }
+
+    console.log(incType.length);
+    console.log(pwSize);
+    for (var i=incType.length; i<pwSize; i++){
+      whichSet = incType[Math.floor(Math.random()*incType.length)];
+      console.log(whichSet);
+      console.log(i);
+      switch(whichSet){
+        case "l":
+          pw = pw + lowercase[Math.floor(Math.random()*lowercase.length)];
+          console.log(pw);
+          break;
+        case "u":
+          pw = pw + uppercase[Math.floor(Math.random()*uppercase.length)];
+          console.log(pw);
+          break;
+        case "s":
+          pw = pw + specChar[Math.floor(Math.random()*specChar.length)];
+          console.log(pw);
+          break;
+        case "n":
+          pw = pw + nums[Math.floor(Math.random()*nums.length)];
+          console.log(pw);
+          break;
+      } 
+    }
+    alert(pw);
+    </script>
+
+</body>
+</html>
