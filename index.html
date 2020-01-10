@@ -1,67 +1,163 @@
 <!DOCTYPE html>
 <html lang="eng-us">
 
-<head>
-    <meta charset = "UTF-8">
-    <title>Random Passwords</title>
-      <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <meta name="viewport" content="width-device-width, initial scale=1">
-</head>
+  <head>
+      <meta charset = "UTF-8">
+      <title>Random Passwords</title>
+        <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+      <!-- <meta name="viewport" content="width-device-width, initial scale=1"> -->
+  </head>
 
-<body style="max-width: 960px">
-  <script type="text/javascript">
+  <body style="max-width: 960px">
 
-    var lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    var uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-    var specChar = ["!", "#", "$", "%", "&", "*", "+", "-", "/", ":", ";", "<", "=", ">", "?", "@", "^", "_", "~"];
-    var nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-    var incType = ["l","u", "n"];
-    var pwSize = parseInt(prompt("Enter PW Size"));
-    var pw = "";
-    
-    // include at least one element
-    
-    if(incType.includes("l")){
-      pw = pw + lowercase[Math.floor(Math.random()*lowercase.length)];
-    }
-    if(incType.includes("u")){
-      pw = pw + uppercase[Math.floor(Math.random()*uppercase.length)];
-    }
-    if(incType.includes("s")){
-      pw = pw + specChar[Math.floor(Math.random()*specChar.length)];
-    }
-    if(incType.includes("n")){
-      pw = pw + nums[Math.floor(Math.random()*nums.length)];  
-    }
+  <!--Title of Input Space-->    
+    <div class="container">
+      <div class="row" style="text-align:center">
+        <div class = "col-sm-3"></div>
+        <div class = "col-sm-6">
+          <h5>Please Select the Password Element Types and the Length</h5>
+        </div>
+      </div>
 
-    console.log(incType.length);
-    console.log(pwSize);
-    for (var i=incType.length; i<pwSize; i++){
-      whichSet = incType[Math.floor(Math.random()*incType.length)];
-      console.log(whichSet);
-      console.log(i);
-      switch(whichSet){
-        case "l":
+  <!--Beginning of Input-->
+      <div class="container" style="max-width:70%; border-color:black; border-width:2px; border-style:solid">
+        <div class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-11">
+            <form>
+              <!--Upper Case Checkbox-->
+              <div class="form-check-inline">
+                <label type="form-check-label">
+                  <input type="checkbox" class="form-check-input" checked id="uc">Upper Case
+                </label>
+              </div>
+
+              <!--Lower Case Checkbox-->
+              <div class="form-check-inline">
+                <label type="form-check-label">
+                  <input type="checkbox" class="form-check-input" checked  id="lc">Lower Case
+                </label>
+              </div>
+
+              <!--Special Characters Checkbox-->
+              <div class="form-check-inline">
+                <label type="form-check-label">
+                  <input type="checkbox" class="form-check-input"  checked  id="spc">Special Characters
+                </label>
+              </div>
+
+              <!--Number Checkbox-->
+              <div class="form-check-inline">
+                <label type="form-check-label">
+                  <input type="checkbox" class="form-check-input"  checked  id="nm">Numbers
+                </label>
+              </div>
+            </div><!--End of Column-->
+          </div> <!--End of Row-->
+
+          <!--Input Number of Characters in Password-->
+          <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+              <div class="form-group">
+                <label for ="numbChars">Enter Number of Characters:</label>
+                <input class="form-control" type="number" min="8" max="128" value=8 id="numbChars"></input>
+              </div>
+            </div>
+            <div class="col-sm-4"></div>
+          </div> <!--End of Row-->
+
+          <!--Submit Button-->
+          <div class="row">
+          <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+              <button type="submit" onclick="randPW()" class="btn btn-primary">Submit</button>
+            </div>
+          </div> <!--End of Row-->
+        </form><!--End of Form-->
+      </div> <!--End of Container for Border-->
+    </div> <!--End of Container for Rows and Columns-->
+
+
+    <script type="text/javascript">
+
+      function randPW(){
+        var lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+        var uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+        var specChar = ["!", "#", "$", "%", "&", "*", "+", "-", "/", ":", ";", "<", "=", ">", "?", "@", "^", "_", "~"];
+        var nums = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+        
+        var pwSize = parseInt(document.getElementById('numbChars').value);
+        var pw = "";
+        
+        var incType = [];
+ 
+        tmpState = document.getElementById("lc");
+        if(tmpState.checked){
+          incType.push("l"); 
+        }
+
+        tmpState = document.getElementById("uc");
+        if(tmpState.checked){
+          incType.push("u");
+        }
+
+        tmpState = document.getElementById("spc");
+        if(tmpState.checked){
+          incType.push("s");
+        }
+
+        tmpState = document.getElementById("nm");
+        if(tmpState.checked){
+          incType.push("n");
+        }
+
+        if(incType.length == 0){
+          alert("Must Select at least one character type");
+          return;
+        }
+
+        console.log(incType);
+        // include at least one element
+        
+        if(incType.includes("l")){
           pw = pw + lowercase[Math.floor(Math.random()*lowercase.length)];
-          console.log(pw);
-          break;
-        case "u":
+        }
+        if(incType.includes("u")){
           pw = pw + uppercase[Math.floor(Math.random()*uppercase.length)];
-          console.log(pw);
-          break;
-        case "s":
+        }
+        if(incType.includes("s")){
           pw = pw + specChar[Math.floor(Math.random()*specChar.length)];
-          console.log(pw);
-          break;
-        case "n":
-          pw = pw + nums[Math.floor(Math.random()*nums.length)];
-          console.log(pw);
-          break;
-      } 
-    }
-    alert(pw);
-    </script>
+        }
+        if(incType.includes("n")){
+          pw = pw + nums[Math.floor(Math.random()*nums.length)];  
+        }
 
-</body>
+        for (var i=incType.length; i<pwSize; i++){
+          whichSet = incType[Math.floor(Math.random()*incType.length)];
+          switch(whichSet){
+            case "l":
+              pw = pw + lowercase[Math.floor(Math.random()*lowercase.length)];
+              console.log(pw);
+              break;
+            case "u":
+              pw = pw + uppercase[Math.floor(Math.random()*uppercase.length)];
+              console.log(pw);
+              break;
+            case "s":
+              pw = pw + specChar[Math.floor(Math.random()*specChar.length)];
+              console.log(pw);
+              break;
+            case "n":
+              pw = pw + nums[Math.floor(Math.random()*nums.length)];
+              console.log(pw);
+              break;
+          } 
+        }
+        alert(pw);
+      }
+      </script>
+
+  </body>
 </html>
