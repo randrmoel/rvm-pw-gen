@@ -12,7 +12,7 @@
   <body style="max-width: 960px">
 
   <!--Title of Input Space-->    
-    <div class="container">
+    <div class="container-fluid">
       <div class="row" style="text-align:center">
         <div class = "col-sm-3"></div>
         <div class = "col-sm-6">
@@ -21,7 +21,7 @@
       </div>
 
   <!--Beginning of Input-->
-      <div class="container" style="max-width:70%; border-color:black; border-width:2px; border-style:solid">
+      <div class="container-fluid" style="padding:0 0 5% 0; max-width:70%; border-color:black; border-width:2px; border-style:solid">
         <div class="row">
           <div class="col-sm-1"></div>
           <div class="col-sm-11">
@@ -72,11 +72,26 @@
           <div class="row">
           <div class="col-sm-1"></div>
             <div class="col-sm-10">
-              <button type="submit" onclick="randPW()" class="btn btn-primary">Submit</button>
+              <button type="submit" onclick="randPW(); return false" class="btn btn-primary">Submit</button>
             </div>
           </div> <!--End of Row-->
+
+          <div class="row">
+            <div class="col-sm-12" style="text-align: center;">
+              <h4>Your Password</h4>
+            </div>
+          </div> <!--End of row-->
         </form><!--End of Form-->
+        <div class="row" style="text-align:left; padding:0 0 0 10%">
+          <div class="col-sm-12">
+            <textarea style="width:90%; text-align:left" rows="3" id="pwOut">Your password appears here</textarea>
+            <button onclick="copyText()"" class="btn btn-primary ">Copy to Clipboard</button>
+          </div>
+        </div><!--End of row-->
+
       </div> <!--End of Container for Border-->
+
+
     </div> <!--End of Container for Rows and Columns-->
 
 
@@ -155,8 +170,17 @@
               break;
           } 
         }
-        alert(pw);
+        document.getElementById("pwOut").value = pw;
+        //alert(pw);
+        return;
       }
+
+      function copyText() {
+        let pwTxt =  document.getElementById("pwOut");
+        pwTxt.select();
+        document.execCommand("copy");
+      }
+
       </script>
 
   </body>
