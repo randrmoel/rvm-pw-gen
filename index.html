@@ -9,46 +9,55 @@
       <!-- <meta name="viewport" content="width-device-width, initial scale=1"> -->
   </head>
 
-  <body style="max-width: 960px">
+  <body style="max-width: 960px; ">
 
+    <div class="container-fluid" style="background-color: ghostwhite; max-width:90%; margin-left:15%; padding:1% 0 5% 2%">
   <!--Title of Input Space-->    
     <div class="container-fluid">
       <div class="row" style="text-align:center">
         <div class = "col-sm-3"></div>
         <div class = "col-sm-6">
-          <h5>Please Select the Password Element Types and the Length</h5>
+          <h2 style="padding-bottom:1%; font-weight:500">Password Generator</h2>
         </div>
       </div>
 
   <!--Beginning of Input-->
-      <div class="container-fluid" style="padding:0 0 5% 0; max-width:70%; border-color:black; border-width:2px; border-style:solid">
+      <div class="container-fluid" style="padding:0 0 5% 0; max-width:70%; border-radius:5px; border-color:silver; border-width:.5px; border-style:solid; box-shadow: 0 0 10px silver">
+        <div class=row style="padding:2% 0 0 0">
+          <div class="col-sm-1"></div>
+          <div class=col-sm-10>
+            <h4>Generate a Password</h4>
+            <hr style="color:silver; border-width:2px">
+          </div>
+        </div>
         <div class="row">
           <div class="col-sm-1"></div>
           <div class="col-sm-11">
             <form>
+              <!--Select Valid Character Types-->
               <!--Upper Case Checkbox-->
-              <div class="form-check-inline">
+              <div class="form-check-inline" style="margin-left:2%">
                 <label type="form-check-label">
                   <input type="checkbox" class="form-check-input" checked id="uc">Upper Case
                 </label>
               </div>
 
               <!--Lower Case Checkbox-->
-              <div class="form-check-inline">
+              <div class="form-check-inline" style="margin-left:2%">
                 <label type="form-check-label">
                   <input type="checkbox" class="form-check-input" checked  id="lc">Lower Case
                 </label>
               </div>
 
               <!--Special Characters Checkbox-->
-              <div class="form-check-inline">
+              <div class="form-check-inline" style="margin-left:2%">
                 <label type="form-check-label">
                   <input type="checkbox" class="form-check-input"  checked  id="spc">Special Characters
                 </label>
               </div>
 
               <!--Number Checkbox-->
-              <div class="form-check-inline">
+              <div class="form-check-inline" style="margin-left:2%">
                 <label type="form-check-label">
                   <input type="checkbox" class="form-check-input"  checked  id="nm">Numbers
                 </label>
@@ -62,32 +71,30 @@
             <div class="col-sm-10">
               <div class="form-group">
                 <label for ="numbChars">Enter Number of Characters:</label>
-                <input class="form-control" type="number" min="8" max="128" value=8 id="numbChars"></input>
+                <input style="max-width:20%; min-width: 15%; margin-left:10% " class="form-control" type="number" min="8" max="128" value=8 id="numbChars"></input>
               </div>
             </div>
             <div class="col-sm-4"></div>
           </div> <!--End of Row-->
 
-          <!--Submit Button-->
-          <div class="row">
-          <div class="col-sm-1"></div>
-            <div class="col-sm-10">
-              <button type="submit" onclick="randPW(); return false" class="btn btn-primary">Submit</button>
-            </div>
-          </div> <!--End of Row-->
-
-          <div class="row">
-            <div class="col-sm-12" style="text-align: center;">
-              <h4>Your Password</h4>
-            </div>
-          </div> <!--End of row-->
         </form><!--End of Form-->
         <div class="row" style="text-align:left; padding:0 0 0 10%">
           <div class="col-sm-12">
-            <textarea style="width:90%; text-align:left" rows="3" id="pwOut">Your password appears here</textarea>
-            <button onclick="copyText()"" class="btn btn-primary ">Copy to Clipboard</button>
+            <textarea style="border-style:dashed; border-width:2px ;border-color:silver ;border-radius:5px ;width:90%; text-align:left" rows="3" id="pwOut">Your Secure Password</textarea>
           </div>
         </div><!--End of row-->
+
+        <!--Submit Button, copy button-->
+        <div class="row">
+          <div class="col-sm-1"></div>
+            <div class="col-sm-4">
+              <button type="submit" style="background-color: firebrick; border-color:firebrick; border-radius:20px; padding:2% 15% 2% 15%" onclick="randPW(); return false" class="btn btn-primary">Generate Password</button>
+            </div>
+            <div class=col-sm-2></div>
+            <div class="col-sm-4">
+              <button onclick="copyText()" style="background-color: silver; border-color:silver; border-radius:20px; padding:2% 15% 2% 15%" class="btn btn-primary ">Copy to Clipboard</button>
+            </div>
+          </div> <!--End of Row-->
 
       </div> <!--End of Container for Border-->
 
@@ -182,6 +189,6 @@
       }
 
       </script>
-
+    </div>
   </body>
 </html>
