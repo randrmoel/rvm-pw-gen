@@ -113,73 +113,75 @@
         var pwSize = parseInt(document.getElementById('numbChars').value);
         var pw = "";
         
-        var incType = [];
- 
-        tmpState = document.getElementById("lc");
-        if(tmpState.checked){
-          incType.push("l"); 
-        }
+        if(pwSize>=8 && pwSize<=128){
 
-        tmpState = document.getElementById("uc");
-        if(tmpState.checked){
-          incType.push("u");
-        }
+          var incType = [];
+  
+          tmpState = document.getElementById("lc");
+          if(tmpState.checked){
+            incType.push("l"); 
+          }
 
-        tmpState = document.getElementById("spc");
-        if(tmpState.checked){
-          incType.push("s");
-        }
+          tmpState = document.getElementById("uc");
+          if(tmpState.checked){
+            incType.push("u");
+          }
 
-        tmpState = document.getElementById("nm");
-        if(tmpState.checked){
-          incType.push("n");
-        }
+          tmpState = document.getElementById("spc");
+          if(tmpState.checked){
+            incType.push("s");
+          }
 
-        if(incType.length == 0){
-          alert("Must Select at least one character type");
+          tmpState = document.getElementById("nm");
+          if(tmpState.checked){
+            incType.push("n");
+          }
+
+          if(incType.length == 0){
+            alert("Must Select at least one character type");
+            return;
+          }
+
+          // include at least one element
+          
+          if(incType.includes("l")){
+            pw = pw + lowercase[Math.floor(Math.random()*lowercase.length)];
+          }
+          if(incType.includes("u")){
+            pw = pw + uppercase[Math.floor(Math.random()*uppercase.length)];
+          }
+          if(incType.includes("s")){
+            pw = pw + specChar[Math.floor(Math.random()*specChar.length)];
+          }
+          if(incType.includes("n")){
+            pw = pw + nums[Math.floor(Math.random()*nums.length)];  
+          }
+
+          for (var i=incType.length; i<pwSize; i++){
+            whichSet = incType[Math.floor(Math.random()*incType.length)];
+            switch(whichSet){
+              case "l":
+                pw = pw + lowercase[Math.floor(Math.random()*lowercase.length)];
+                break;
+              case "u":
+                pw = pw + uppercase[Math.floor(Math.random()*uppercase.length)];
+                break;
+              case "s":
+                pw = pw + specChar[Math.floor(Math.random()*specChar.length)];
+                break;
+              case "n":
+                pw = pw + nums[Math.floor(Math.random()*nums.length)];
+                break;
+            } 
+          }
+          document.getElementById("pwOut").value = pw;
+          //alert(pw);
           return;
         }
-
-        console.log(incType);
-        // include at least one element
-        
-        if(incType.includes("l")){
-          pw = pw + lowercase[Math.floor(Math.random()*lowercase.length)];
+        else {
+          alert("Password must be between 8 and 128 characters inclusive");
+          return;
         }
-        if(incType.includes("u")){
-          pw = pw + uppercase[Math.floor(Math.random()*uppercase.length)];
-        }
-        if(incType.includes("s")){
-          pw = pw + specChar[Math.floor(Math.random()*specChar.length)];
-        }
-        if(incType.includes("n")){
-          pw = pw + nums[Math.floor(Math.random()*nums.length)];  
-        }
-
-        for (var i=incType.length; i<pwSize; i++){
-          whichSet = incType[Math.floor(Math.random()*incType.length)];
-          switch(whichSet){
-            case "l":
-              pw = pw + lowercase[Math.floor(Math.random()*lowercase.length)];
-              console.log(pw);
-              break;
-            case "u":
-              pw = pw + uppercase[Math.floor(Math.random()*uppercase.length)];
-              console.log(pw);
-              break;
-            case "s":
-              pw = pw + specChar[Math.floor(Math.random()*specChar.length)];
-              console.log(pw);
-              break;
-            case "n":
-              pw = pw + nums[Math.floor(Math.random()*nums.length)];
-              console.log(pw);
-              break;
-          } 
-        }
-        document.getElementById("pwOut").value = pw;
-        //alert(pw);
-        return;
       }
 
       function copyText() {
